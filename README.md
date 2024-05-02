@@ -10,20 +10,48 @@ Samuel Salgueiro - 200245
 
 Para esta practica hacemos uso de la implementación del estandar **FIPA** en Python: ["PADE"](https://pade.readthedocs.io/en/latest/)
 
-### Requirements
+### Pre-requirements
 
-- Python 3.X, se recomienda crear un [entorno virtual](https://docs.python.org/3/library/venv.html) para este proyecto:
+- Un gestor de paquetes de Python, nosotros
+  usaremos [Pip](https://pypi.org/project/pip/)
+
+- Python 3.7+, se recomienda crear u [entorno virtual](https://docs.python.org/3/library/venv.html) para este proyecto:
 
   ```bash
-  python -m venv venv # Creación del entorno
-  source venv/bin/activate # Activación
+  pip install virtualenv # Instalamos virtualenv
+  virtualenv .venv # Creación del entorno
+  source .venv/bin/activate # Activación
   ```
 
-- Gestor de paquetes, recomendamos [pip](https://pypi.org/project/pip/)
-- Pade
+- Pade, instalación manual
 
   ```bash
-  pip install pade
+  mkdir lib && cd lib # Carpeta para guardar el código fuente
+  git clone https://github.com/grei-ufc/pade
+  cd pade
+  python setup.py install
+  ```
+
+  Para comprobar que se ha instalado correctamente:
+
+  ```bash
+  pade
+  ```
+
+  Y obtendremos
+
+  ```txt
+  ❯ pade
+  Usage: pade [OPTIONS] COMMAND [ARGS]...
+
+  Options:
+  --help  Show this message and exit.
+
+  Commands:
+  create-pade-db
+  drop-pade-db
+  start-runtime
+  start-web-interface
   ```
 
 ## Start-up
@@ -31,5 +59,6 @@ Para esta practica hacemos uso de la implementación del estandar **FIPA** en Py
 Para inciar el programa:
 
 ```bash
+cd SSII-JADE # Carpeta root del proyecto
 pade start-runtime --port 20000 agent_example_1.py
 ```
