@@ -23,10 +23,10 @@ class AgentPublisher(Agent):
 
 class AgentSubscriber(Agent):
 
-    def __init__(self, aid, agent_pub: AgentPublisher):
+    def __init__(self, aid, receiver_aid: AID):
         super(AgentSubscriber, self).__init__(aid)
 
-        self.call_later(8.0, self.launch_subscriber_protocol, agent_pub)
+        self.call_later(8.0, self.launch_subscriber_protocol, receiver_aid)
 
     def launch_subscriber_protocol(self, aid: AID):
         msg = ACLMessage(ACLMessage.SUBSCRIBE)
