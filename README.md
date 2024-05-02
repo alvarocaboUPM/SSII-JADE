@@ -52,7 +52,7 @@ Para inciar el programa:
 
 ```bash
 cd SSII-JADE # Carpeta root del proyecto
-pade start-runtime --port 20000 agent_example_1.py
+pade start-runtime --port 20000 src/pub_sub_agent.py
 ```
 
 ## Autores
