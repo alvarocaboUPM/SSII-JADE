@@ -9,7 +9,7 @@ Para esta practica hacemos uso de la implementación del estandar **FIPA** en Py
 - Un gestor de paquetes de Python, nosotros
   usaremos [Pip](https://pypi.org/project/pip/)
 
-- Python 3.7+, se recomienda crear u [entorno virtual](https://docs.python.org/3/library/venv.html) para este proyecto:
+- Python 3.10+, se recomienda crear u [entorno virtual](https://docs.python.org/3/library/venv.html) para este proyecto:
 
   ```bash
   pip install virtualenv # Instalamos virtualenv
@@ -21,9 +21,7 @@ Para esta practica hacemos uso de la implementación del estandar **FIPA** en Py
 
   ```bash
   mkdir lib && cd lib # Carpeta para guardar el código fuente
-  git clone https://github.com/grei-ufc/pade
-  cd pade
-  python setup.py install
+  git clone https://github.com/alvarocaboUPM/pade && cd pade && python setup.py install # Instalador de dependencias
   ```
 
   Para comprobar que se ha instalado correctamente:
