@@ -1,11 +1,5 @@
 # Práctica SSII - Grupo XX
 
-## Autores
-
-Álvaro Cabo - 200172
-
-Samuel Salgueiro - 200245
-
 ## Set-up
 
 Para esta practica hacemos uso de la implementación del estandar **FIPA** en Python: ["PADE"](https://pade.readthedocs.io/en/latest/)
@@ -62,3 +56,10 @@ Para inciar el programa:
 cd SSII-JADE # Carpeta root del proyecto
 pade start-runtime --port 20000 agent_example_1.py
 ```
+
+## Autores
+
+| Nombre           | Matricula |
+| ---------------- | --------- |
+| Álvaro Cabo      | 200172    |
+| Samuel Salgueiro | 200245    |
