@@ -22,6 +22,8 @@ Para esta practica hacemos uso de la implementación del estandar **FIPA** en Py
   ```bash
   mkdir lib && cd lib # Carpeta para guardar el código fuente
   git clone https://github.com/alvarocaboUPM/pade && cd pade && python setup.py install # Instalador de dependencias
+  cd ../../ && rm -rf lib  # Opcional, borrar la carpeta lib pues ya no es necesaria
+                           # puede generar conflicto con las dependencias ya instaladas en el entorno
   ```
 
   Para comprobar que se ha instalado correctamente:
