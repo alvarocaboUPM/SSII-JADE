@@ -7,10 +7,19 @@ from pade.acl.aid import AID
 from .protocols import PublisherProtocol, SubscriberProtocol
 from .time import Time
 
-
-
-
 class AgentPublisher(Agent):
+    """
+    Represents a publisher agent.
+
+    Args:
+        aid (str): The unique identifier for the agent.
+
+    Attributes:
+        protocol (PublisherProtocol): The protocol used by the agent.
+        timed (Time): The timed behavior of the agent.
+        behaviours (list): The list of behaviors of the agent.
+
+    """
 
     def __init__(self, aid):
         super(AgentPublisher, self).__init__(aid)
