@@ -4,6 +4,8 @@
 
 Álvaro Cabo - 200172
 
+Samuel Salgueiro - 200245
+
 ## Set-up
 
 Para esta practica hacemos uso de la implementación del estandar **FIPA** en Python: ["PADE"]("https://pade.readthedocs.io/en/latest/")
