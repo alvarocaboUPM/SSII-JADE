@@ -4,8 +4,13 @@ from pade.acl.messages import ACLMessage
 
 from pade.acl.aid import AID
 
+from .fetch_behaviour import AgentFetcher
+
 from .protocols import PublisherProtocol, SubscriberProtocol
-from .time import Time
+
+from pade.acl.messages import ACLMessage
+
+from pade.core.agent import Agent
 
 class AgentPublisher(Agent):
     """
@@ -16,7 +21,8 @@ class AgentPublisher(Agent):
 
     Attributes:
         protocol (PublisherProtocol): The protocol used by the agent.
-        timed (Time): The timed behavior of the agent.
+        self.timed_behaviour = Time(self, self.protocol.notify)
+        (Time): The timed behavior of the agent.
         behaviours (list): The list of behaviors of the agent.
 
     """
@@ -25,10 +31,9 @@ class AgentPublisher(Agent):
         super(AgentPublisher, self).__init__(aid)
 
         self.protocol = PublisherProtocol(self)
-        self.timed = Time(self, self.protocol.notify)
-
+        self.timed_behaviour = AgentFetcher(self, self.protocol.notify)
         self.behaviours.append(self.protocol)
-        self.behaviours.append(self.timed)
+        self.behaviours.append(self.timed_behaviour)
 
 class AgentSubscriber(Agent):
     """

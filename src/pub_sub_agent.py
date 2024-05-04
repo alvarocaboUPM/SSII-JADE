@@ -3,6 +3,7 @@ from pade.misc.utility import start_loop
 from pade.acl.aid import AID
 from sys import argv
 
+from pade.misc.common import PadeSession
 from models.agents import AgentPublisher, AgentSubscriber
 
 

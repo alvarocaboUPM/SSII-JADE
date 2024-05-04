@@ -29,10 +29,10 @@ class PublisherProtocol(FipaSubscribeProtocol):
         self.register(message.sender)
         display_message(self.agent.aid.name, '{} from {}'.format(message.content,
                                                                  message.sender.name))
-        resposta = message.create_reply()
-        resposta.set_performative(ACLMessage.AGREE)
-        resposta.set_content('Subscribe message accepted')
-        self.agent.send(resposta)
+        reply = message.create_reply()
+        reply.set_performative(ACLMessage.AGREE)
+        reply.set_content('Subscribe message accepted')
+        self.agent.send(reply)
 
     def handle_cancel(self, message):
         self.deregister(self, message.sender)
