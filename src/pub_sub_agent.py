@@ -3,12 +3,11 @@ from pade.misc.utility import start_loop
 from pade.acl.aid import AID
 from sys import argv
 
-from pade.misc.common import PadeSession
+from flask import Flask
 from models.agents import AgentPublisher, AgentSubscriber
 
 
-if __name__ == '__main__':
-
+def generate_agents() -> list:
     agents_per_process = 1
     c = 0
     agents = list()
@@ -32,5 +31,17 @@ if __name__ == '__main__':
         agents.append(agent_sub_2)
 
         c += 1000
+    return agents
 
-    start_loop(agents)
+def start_up_flask():
+    app = Flask(__name__)
+
+    @app.route('/')
+    def home():
+        return 'Hello World'
+
+    app.run(port=5001)
+
+if __name__ == '__main__':
+    #start_up_flask()
+    start_loop(generate_agents())
