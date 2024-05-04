@@ -4,7 +4,7 @@ from pade.acl.messages import ACLMessage
 
 from pade.acl.aid import AID
 
-from .fetch_behaviour import AgentFetcher
+from .fetch_behaviour import FetchBehaviour
 
 from .protocols import PublisherProtocol, SubscriberProtocol
 
@@ -31,7 +31,7 @@ class AgentPublisher(Agent):
         super(AgentPublisher, self).__init__(aid)
 
         self.protocol = PublisherProtocol(self)
-        self.timed_behaviour = AgentFetcher(self, self.protocol.notify)
+        self.timed_behaviour = FetchBehaviour(self, self.protocol.notify)
         self.behaviours.append(self.protocol)
         self.behaviours.append(self.timed_behaviour)
 

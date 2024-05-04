@@ -4,19 +4,7 @@ from pade.misc.utility import display_message
 
 from pade.acl.messages import ACLMessage
 
-
-class SubscriberProtocol(FipaSubscribeProtocol):
-
-    def __init__(self, agent, message):
-        super(SubscriberProtocol, self).__init__(agent,
-                                                 message,
-                                                 is_initiator=True)
-
-    def handle_agree(self, message):
-        display_message(self.agent.aid.name, message.content)
-
-    def handle_inform(self, message):
-        display_message(self.agent.aid.name, message.content)
+from .data import Root
 
 class PublisherProtocol(FipaSubscribeProtocol):
 
@@ -40,3 +28,21 @@ class PublisherProtocol(FipaSubscribeProtocol):
 
     def notify(self, message):
         super(PublisherProtocol, self).notify(message)
+
+import pickle
+class SubscriberProtocol(FipaSubscribeProtocol):
+
+    def __init__(self, agent, message):
+        super(SubscriberProtocol, self).__init__(agent,
+                                                 message,
+                                                 is_initiator=True)
+
+    def handle_agree(self, message):
+        display_message(self.agent.aid.name, message.content)
+
+    def handle_inform(self, message):
+        data = pickle.loads(message.content)
+        display_message(self.agent.aid.name, make_some_calculations(data))
+
+def make_some_calculations(data: Root) -> str:
+    return format("Calculated some data: {}".format(data.usd.get('eur')))
