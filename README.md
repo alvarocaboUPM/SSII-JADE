@@ -1,4 +1,13 @@
-# Práctica SSII - Grupo XX
+# RealTime data fetcher con Sistemas Autónomos
+
+Práctica de la asignatura SSII del grupo XX
+
+## Autores
+
+| Nombre           | Matricula |
+| ---------------- | --------- |
+| Álvaro Cabo      | 200172    |
+| Samuel Salgueiro | 200245    |
 
 ## Set-up
 
@@ -56,10 +65,3 @@ Para inciar el programa:
 cd SSII-JADE # Carpeta root del proyecto
 pade start-runtime --port 20000 src/pub_sub_agent.py
 ```
-
-## Autores
-
-| Nombre           | Matricula |
-| ---------------- | --------- |
-| Álvaro Cabo      | 200172    |
-| Samuel Salgueiro | 200245    |
