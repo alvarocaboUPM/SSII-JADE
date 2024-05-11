@@ -3,6 +3,12 @@ from dataclasses import dataclass
 
 import requests as req
 
+class ApiResult:
+    def __init__(self):
+        pass
+    def get_data(self) -> float:
+        pass
+
 class API():
     """
     Represents an API.
@@ -18,7 +24,7 @@ class API():
         """
         self.url = url
 
-    def fetch(self) -> dataclass:
+    def fetch(self) -> ApiResult:
         """
         Fetches data from the API.
 
@@ -33,7 +39,7 @@ class API():
 """
 
 @dataclass
-class Currency:
+class Currency(ApiResult):
     date: str
     usd: dict
 
@@ -42,6 +48,9 @@ class Currency:
         _date = str(obj.get("date"))
         _usd = obj.get("usd")
         return Currency(_date, _usd)
+
+    def get_data(self) -> float:
+        return self.usd.get('eur')
 
 class CurrencyAPI(API):
     def __init__(self):

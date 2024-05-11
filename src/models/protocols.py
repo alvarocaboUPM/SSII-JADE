@@ -7,7 +7,7 @@ from pade.acl.messages import ACLMessage
 
 from gui.gui import MainWindow
 
-from .data import Currency
+from .data import ApiResult, Currency
 
 class PublisherProtocol(FipaSubscribeProtocol):
 
@@ -46,12 +46,9 @@ class SubscriberProtocol(FipaSubscribeProtocol):
         display_message(self.agent.aid.name, message.content)
 
     def handle_inform(self, message):
-        data = pickle.loads(message.content)
-        data = make_some_calculations(data)
+        result: ApiResult = pickle.loads(message.content)
+        data = result.get_data()
         display_message(self.agent.aid.name, data)
         self.window.update_plot(data)
         if (self.update_frecuency and self.update_frecuency > 0):
             sleep(self.update_frecuency)
-
-def make_some_calculations(data: Currency) -> int:
-    return data.usd.get('eur')

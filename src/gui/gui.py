@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
         self.ax.set_ylabel('Dolar Price')
         self.ax.set_title('Live Data')
 
-    def update_plot(self, data):
+    def update_plot(self, data: float):
         self.ax.clear()
         self.y.append(data)
         x = np.arange(len(self.y))
