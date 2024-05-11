@@ -6,7 +6,7 @@ from pade.acl.messages import ACLMessage
 from pade.behaviours.protocols import TimedBehaviour
 from pade.core.agent import Agent
 
-from .data import Root
+from .data import Currency, CurrencyAPI
 
 class FetchBehaviour(TimedBehaviour):
     """_summary_
@@ -19,21 +19,15 @@ class FetchBehaviour(TimedBehaviour):
         super(FetchBehaviour, self).__init__(agent, 1)
         self.notify = notify
         self.data = 0
-        self.url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@{date}/{apiVersion}/{endpoint}"
+        self.api = CurrencyAPI()
 
     def on_time(self):
         super(FetchBehaviour, self).on_time()
         message = ACLMessage(ACLMessage.INFORM)
         message.set_protocol(ACLMessage.FIPA_SUBSCRIBE_PROTOCOL)
-        self.data = self.fetch()
-        message.set_content(pickle.dumps(self.data)) # Serialize the data
+        #Fetches the data from a source
+        self.data = self.api.fetch() 
+        # Serialize the data
+        message.set_content(pickle.dumps(self.data)) 
+        #Send the data to the subscribers
         self.notify(message)
-
-    def fetch(self) -> Root:
-        formatted_url = self.url.format(date="latest", apiVersion="v1", endpoint="currencies/usd.json")
-        response = req.get(formatted_url)
-
-        if response.status_code != 200:
-            return None
-
-        return Root.from_dict(response.json())

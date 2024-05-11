@@ -1,10 +1,13 @@
+from time import sleep
 from pade.behaviours.protocols import FipaSubscribeProtocol
 
 from pade.misc.utility import display_message
 
 from pade.acl.messages import ACLMessage
 
-from .data import Root
+from gui.gui import MainWindow
+
+from .data import Currency
 
 class PublisherProtocol(FipaSubscribeProtocol):
 
@@ -32,17 +35,23 @@ class PublisherProtocol(FipaSubscribeProtocol):
 import pickle
 class SubscriberProtocol(FipaSubscribeProtocol):
 
-    def __init__(self, agent, message):
+    def __init__(self, agent, message, window: MainWindow, update_frecuency=0):
         super(SubscriberProtocol, self).__init__(agent,
                                                  message,
                                                  is_initiator=True)
+        self.window = window
+        self.update_frecuency = update_frecuency
 
     def handle_agree(self, message):
         display_message(self.agent.aid.name, message.content)
 
     def handle_inform(self, message):
         data = pickle.loads(message.content)
-        display_message(self.agent.aid.name, make_some_calculations(data))
+        data = make_some_calculations(data)
+        display_message(self.agent.aid.name, data)
+        self.window.update_plot(data)
+        if (self.update_frecuency and self.update_frecuency > 0):
+            sleep(self.update_frecuency)
 
-def make_some_calculations(data: Root) -> str:
-    return format("Calculated some data: {}".format(data.usd.get('eur')))
+def make_some_calculations(data: Currency) -> int:
+    return data.usd.get('eur')
