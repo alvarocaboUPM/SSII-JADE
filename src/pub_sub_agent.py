@@ -9,8 +9,10 @@ from models.agents import AgentPublisher, AgentSubscriber
 from gui.gui import MainWindow
 import threading
 
+from models.data import RandomNumberAPI, API
 
-def generate_agents(window: MainWindow) -> list:
+
+def generate_agents(window: MainWindow, api: API) -> list:
     agents_per_process = 1
     c = 0
     agents = list()
@@ -21,7 +23,7 @@ def generate_agents(window: MainWindow) -> list:
 
         agent_name = 'agent_publisher_{}@localhost:{}'.format(port, port)
         participants.append(agent_name)
-        agent_pub_1 = AgentPublisher(AID(name=agent_name))
+        agent_pub_1 = AgentPublisher(AID(name=agent_name), api)
         agents.append(agent_pub_1)
 
         agent_name = 'agent_subscriber_{}@localhost:{}'.format(port + k, port + k)
@@ -37,8 +39,9 @@ def generate_agents(window: MainWindow) -> list:
     return agents
 
 if __name__ == '__main__':
+    api = RandomNumberAPI()
     app = QApplication(sys.argv)
-    window = MainWindow()
-    threading.Thread(target=start_loop, args=(generate_agents(window),)).start()
+    window = MainWindow(api)
+    threading.Thread(target=start_loop, args=(generate_agents(window,api),)).start()
     window.show()
     sys.exit(app.exec_())

@@ -14,7 +14,7 @@ class API():
     Represents an API.
     """
 
-    def __init__(self, url: str):
+    def __init__(self, url: str, xLabel: str = "Seconds", yLabel: str = "Item", title: str="RealTime Graph"):
         """
         Initializes an instance of the API class.
 
@@ -23,6 +23,9 @@ class API():
 
         """
         self.url = url
+        self.xLabel = xLabel
+        self.yLabel = yLabel
+        self.title = title
 
     def fetch(self) -> ApiResult:
         """

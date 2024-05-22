@@ -2,10 +2,11 @@ from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QPushButton
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
-from matplotlib.animation import FuncAnimation
+
+from models.data import API,RandomNumberAPI
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, api: API = RandomNumberAPI()):
         super().__init__()
 
         self.setWindowTitle("Live Data Plot")
@@ -24,9 +25,9 @@ class MainWindow(QMainWindow):
         self.layout.addWidget(self.canvas)
 
         self.ax = self.fig.add_subplot(111)
-        self.ax.set_xlabel('Bitcoin Price')
-        self.ax.set_ylabel('Dolar Price')
-        self.ax.set_title('Live Data')
+        self.ax.set_xlabel(api.xLabel)
+        self.ax.set_ylabel(api.yLabel)
+        self.ax.set_title(api.title)
 
     def update_plot(self, data: float):
         self.ax.clear()

@@ -9,7 +9,7 @@ from gui.gui import MainWindow
 from .fetch_behaviour import FetchBehaviour
 
 from .protocols import PublisherProtocol, SubscriberProtocol
-
+from .data import API
 from pade.acl.messages import ACLMessage
 
 from pade.core.agent import Agent
@@ -29,11 +29,11 @@ class AgentPublisher(Agent):
 
     """
 
-    def __init__(self, aid):
+    def __init__(self, aid, api: API):
         super(AgentPublisher, self).__init__(aid)
 
         self.protocol = PublisherProtocol(self)
-        self.timed_behaviour = FetchBehaviour(self, self.protocol.notify)
+        self.timed_behaviour = FetchBehaviour(self, self.protocol.notify, api)
         self.behaviours.append(self.protocol)
         self.behaviours.append(self.timed_behaviour)
 
