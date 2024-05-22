@@ -15,6 +15,8 @@ Para esta practica hacemos uso de la implementación del estandar **FIPA** en Py
 
 ### Pre-requirements
 
+Esta configuración se ha probado en Ubuntu 22.04
+
 - Un gestor de paquetes de Python, nosotros
   usaremos [Pip](https://pypi.org/project/pip/)
 
@@ -24,6 +26,7 @@ Para esta practica hacemos uso de la implementación del estandar **FIPA** en Py
   pip install virtualenv # Instalamos virtualenv
   virtualenv .venv # Creación del entorno
   source .venv/bin/activate # Activación
+  pip install -r requirements.txt # Instalación de requirements
   ```
 
 - Pade, instalación manual
