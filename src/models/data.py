@@ -37,6 +37,28 @@ class API():
 """
     Example data model we used in the project
 """
+@dataclass
+class RandonNumber(ApiResult):
+    def __init__(self, number: int):
+        self.number = number
+
+    @staticmethod
+    def from_dict(obj: Any) -> 'RandonNumber':
+        return RandonNumber(obj.get("number"))
+
+    def get_data(self) -> float:
+        return self.number
+    
+class RandomNumberAPI(API):
+    def __init__(self):
+        super().__init__("https://www.random.org/integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new")
+
+    def fetch(self) -> dataclass:
+        response = req.get(self.url)
+        if response.status_code != 200:
+            return None
+
+        return RandonNumber(int(response.text))
 
 @dataclass
 class Currency(ApiResult):
