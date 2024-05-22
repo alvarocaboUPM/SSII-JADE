@@ -15,7 +15,7 @@ Para esta practica hacemos uso de la implementación del estandar **FIPA** en Py
 
 ### Pre-requirements
 
-Esta configuración se ha probado en Ubuntu 22.04
+Esta configuración se ha probado en Ubuntu 22.04 con Python 3.10.12
 
 - Un gestor de paquetes de Python, nosotros
   usaremos [Pip](https://pypi.org/project/pip/)
@@ -66,5 +66,5 @@ Para inciar el programa:
 
 ```bash
 cd SSII-JADE # Carpeta root del proyecto
-pade start-runtime --port 20000 src/pub_sub_agent.py
+pade start-runtime --port 20000 --username test --password test src/pub_sub_agent.py
 ```
